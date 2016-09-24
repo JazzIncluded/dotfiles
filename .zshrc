@@ -7,13 +7,21 @@ export CACHE_DIR="${HOME}/.cache"
 export _FASD_DATA="${CACHE_DIR}/.fasd" # set fasd data file location
 export ZPLUG_HOME="${HOME}/.zplug"
 
-export GREP_OPTIONS='--color=auto';
-
 # history settings
 export HISTSIZE=100000
 export SAVEHIST=100000
 export HISTCONTROL=ignoredups
 export HISTFILE="${CACHE_DIR}/.zsh_history"
+
+export GREP_OPTIONS='--color=auto';
+
+export PATH="/${HOME}/anaconda/bin:$PATH"
+source activate py35
+export PATH="/usr/local/git:$PATH"
+
+alias nv="nvim"
+
+setopt glob_dots
 
 source ~/.zplug/init.zsh
 
@@ -38,8 +46,6 @@ zplug check || zplug install
 zplug load
 
 bindkey -v
-
-
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
