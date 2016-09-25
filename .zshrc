@@ -46,6 +46,8 @@ zplug check || zplug install
 zplug load
 
 bindkey -v
+bindkey -M viins 'jj' vi-cmd-mode
+bindkey '^[[Z' reverse-menu-complete
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
