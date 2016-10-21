@@ -23,6 +23,8 @@ alias nv="nvim"
 
 setopt glob_dots
 
+source ~/.dotfiles/.zshrc_private
+
 source ~/.zplug/init.zsh
 
 zplug "zplug/zplug"
@@ -44,6 +46,8 @@ zplug "sindresorhus/pure", nice:10
 
 zplug check || zplug install
 zplug load
+
+export PURE_CMD_MAX_EXEC_TIME=60
 
 bindkey -v
 bindkey -M viins 'jj' vi-cmd-mode

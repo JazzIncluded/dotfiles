@@ -29,7 +29,7 @@ Plug 'sheerun/vim-polyglot'                                       " Syntax highl
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy search for files
 Plug 'junegunn/fzf.vim'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }                  " Completion, goto definition etc.
-Plug 'scrooloose/syntastic', { 'for': 'python' }                " Find syntax error using e.g. flake8
+Plug 'scrooloose/syntastic', { 'for': 'python' }                  " Find syntax error using e.g. flake8
 
 filetype plugin indent on                   " required!
 call plug#end()
@@ -93,6 +93,8 @@ set diffopt+=vertical          " use veritcal diffs, usefull for fugitive
 set list
 set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
+autocmd FileType make setlocal noexpandtab
+
 " Map leader
 let mapleader=","
 set timeoutlen=500
@@ -110,7 +112,7 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 "nnoremap <c-j> <c-E>
 " Scroll to center cursor
 "nnoremap zm zz
-inoremap jk <esc>
+"inoremap jk <esc>
 inoremap jj <esc>
 " Move vertically by visual line
 nnoremap j gj
