@@ -2,16 +2,18 @@ set nocompatible
 filetype off
 
 " Install vim-plug if we don't already have it
-if empty(glob("~/.vim/autoload/plug.vim"))
-    " Ensure all needed directories exist  (Thanks @kapadiamush)
-    execute '!mkdir -p ~/.vim/plugged'
-    execute '!mkdir -p ~/.vim/autoload'
-    " Download the actual plugin manager
-    execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
-endif
+"if empty(glob("~/.vim/autoload/plug.vim"))
+"    " Ensure all needed directories exist  (Thanks @kapadiamush)
+"    execute '!mkdir -p ~/.vim/plugged'
+"    execute '!mkdir -p ~/.vim/autoload'
+"    " Download the actual plugin manager
+"    execute '!curl -fLo ~/.vim/autoload/plug.vim https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+"endif
 
-call plug#begin('~/.vim/plugged')
+"call plug#begin('~/.vim/plugged')
+call plug#begin()
 
+Plug 'Valloric/YouCompleteMe'
 Plug 'altercation/vim-colors-solarized'
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-fugitive'
@@ -30,18 +32,22 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " Fuzzy search
 Plug 'junegunn/fzf.vim'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }                  " Completion, goto definition etc.
 Plug 'scrooloose/syntastic', { 'for': 'python' }                  " Find syntax error using e.g. flake8
+Plug 'nvie/vim-flake8'
 
 filetype plugin indent on                   " required!
 call plug#end()
 
 syntax enable
+"set t_Co=256
 set background=dark
 colorscheme solarized
+"export TERM=screen-256color-bce
+
+"let python_highlight_all = 1
+"syntax on
 
 " Editing
-if !has('nvim')
-   set encoding=utf-8 "Use utf-8, default in neovim
-end
+set encoding=utf-8 "Use utf-8, default in neovim
 
 " Hide buffers with unsaved changes instead of closing
 set hidden
@@ -56,7 +62,9 @@ endif
 
 set history=1000
 set undolevels=500
-set backupdir=~/.vim/backup//
+"set backupdir=~/.vim/backup//
+set nobackup
+set swapfile
 set directory=~/.vim/swp//
 if has("persistent_undo")       " Set undofile
     set undodir=~/.undodir/
@@ -76,8 +84,8 @@ set autoindent
 set copyindent
 set showcmd                    " Show command in bottom bar
 set cmdheight=1                " Set command bar height
-set cursorline
-set colorcolumn=80
+"set cursorline
+"set colorcolumn=80
 set showmode                   " Show active mode
 set wildmenu                   " Whildmenu when tabbing during vim command
 set wildmode=longest,list,full " Bash style completion
@@ -120,7 +128,7 @@ nnoremap k gk
 " Move to beginning of line
 "nnoremap A ^
 " Move to end of line
-nnoremap E $
+"nnoremap E $
 " Remap follow link command
 "nnoremap gt <C-]>
 " Use 'normal' regex
@@ -139,9 +147,16 @@ nnoremap <silent> <leader>h :History<cr>
 
 " Remap swedish keys
 map ö [
+map ö [
 map ä ]
 map Ö {
 map Ä }
+imap ö [
+imap ä ]
+imap Ö {
+imap Ä }
+map ¤ $
+imap ¤ $
 " Windows
 nnoremap <c-l> <c-w>l
 nnoremap <c-j> <c-w>j

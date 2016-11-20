@@ -7,23 +7,17 @@ export CACHE_DIR="${HOME}/.cache"
 export _FASD_DATA="${CACHE_DIR}/.fasd" # set fasd data file location
 export ZPLUG_HOME="${HOME}/.zplug"
 
-# history settings
-export HISTSIZE=100000
-export SAVEHIST=100000
-export HISTCONTROL=ignoredups
-export HISTFILE="${CACHE_DIR}/.zsh_history"
+# export GREP_OPTIONS='--color=auto';
 
-export GREP_OPTIONS='--color=auto';
-
-export PATH="/${HOME}/anaconda/bin:$PATH"
-source activate py35
-export PATH="/usr/local/git:$PATH"
+# export PATH="/${HOME}/anaconda3/bin:$PATH"
+source activate python35
+#export PATH="/usr/local/git:$PATH"
 
 alias nv="nvim"
 
-setopt glob_dots
+setopt glob_dots # Do not require leading ´.´ in filename to be matched
 
-source ~/.dotfiles/.zshrc_private
+#source ~/.dotfiles/.zshrc_private
 
 source ~/.zplug/init.zsh
 
@@ -56,3 +50,16 @@ bindkey '^[[Z' reverse-menu-complete
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 #autoload -U compinit && compinit
+
+# history settings
+export HISTSIZE=100000
+export SAVEHIST=100000
+#export HISTCONTROL=ignoredups # no duplicate lines or lines starting with space
+export HISTFILE="${CACHE_DIR}/.zsh_history"
+setopt inc_append_history
+setopt hist_ignore_dups
+# setopt hist_ignore_all_dups
+setopt hist_find_no_dups
+setopt hist_reduce_blanks
+# setopt hist_save_no_dups
+
