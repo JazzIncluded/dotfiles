@@ -47,6 +47,11 @@ bindkey -v
 bindkey -M viins 'jj' vi-cmd-mode
 bindkey '^[[Z' reverse-menu-complete
 
+bindkey -s 'ö' '['
+bindkey -s 'ä' ']'
+bindkey -s 'Ö' '{'
+bindkey -s 'Ä' '}'
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 #autoload -U compinit && compinit
