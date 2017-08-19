@@ -117,32 +117,43 @@ set timeoutlen=500
 nnoremap <leader><space> :nohlsearch<CR>
 " set nohlsearch
 " Easier than pressing shift all the time
-nnoremap - :
 nnoremap s :
+" nnoremap <space> <c>
+" noremap <space> <c>
+
+" function! RemapSpaceToCtrl()
+"     for l:char in range(97, 122)
+"         let l:char = nr2char(l:char)
+"
+"         execute 'nnoremap <silent> <Space>' . l:char . ' <C-' . l:char . '><CR>'
+"     endfor
+" endfunction
+" call RemapSpaceToCtrl()
+
 set pastetoggle=<F2>
 " Easy access to vimrc
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
-" Scroll view up and down
-"nnoremap <c-k> <c-Y>
-"nnoremap <c-j> <c-E>
-" Scroll to center cursor
-"nnoremap zm zz
+" Save
 inoremap <c-s> <esc>:w<cr>
+nnoremap <c-s> :w<cr>
+nnoremap <leader>s :w<cr>
+" Escape
 inoremap jj <esc>
+" Enter
 map <c-m> <ENTER>
 cno <c-m> <cr>
-nnoremap <c-s> :w<cr>
 " Move vertically by visual line
 nnoremap j gj
 nnoremap k gk
 " Move to beginning of line
 map H ^
 map L $
+nnoremap < <<
+nnoremap > >>
 " map ¤ $
 " imap ¤ $
 " Remap follow link command
-"nnoremap gt <C-]>
 " Use 'normal' regex
 "nnoremap / /\v
 "vnoremap / /\v
@@ -151,7 +162,7 @@ map L $
 " Tab left
 " inoremap <S-Tab> <c-d>
 " inoremap <c-x> <bs>
-" Y to yank from cursor to end
+" Y to yank from cursor to end of line
 map Y y$
 " FZF
 nnoremap <silent> <C-P> :FZF<CR>
@@ -178,8 +189,8 @@ nnoremap <c-k> <c-w>k
 " Open up new vertical window
 nnoremap <leader>w <C-w>v<C-w>l
 " bash like keys for the command line
-cno <c-a> <home>
-cno <c-e> <end>
+" cno <c-a> <home>
+" cno <c-e> <end>
 "cno <c-p> <up>
 "cno <c-n> <down>
 " Move about the quickfix list more easily
@@ -192,9 +203,8 @@ set splitbelow
 set splitright
 
 " NERDTree
-" map <c-n> :NERDTreeToggle<CR>
+map <c-n> :NERDTreeToggle<CR>
 " map <c-n> :NERDTreeFind<CR>
-map <c-n> :call ToggleNERDTreeFind()<CR>
 function! ToggleNERDTreeFind()
     if g:NERDTree.IsOpen()
         execute ':NERDTreeToggle'
@@ -207,9 +217,11 @@ function! IsNerdTreeEnabled()
     return exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1
 endfunction
 
+" let g:NERDTreeMouseMode = 3 " Open folders/files with single-click. Currently not working
+
 " Toggle undotree
 nnoremap <leader>u :UndotreeToggle<CR>
-
+" Toggle header source file
 nmap <silent> § :FSHere<cr>
 
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
@@ -232,9 +244,11 @@ let g:ycm_extra_conf_globlist = ['~/dev/*']
 let g:ycm_python_binary_path = 'python3'
 let g:ycm_add_preview_to_completeopt = 0
 " nnoremap <leader>fd :YcmCompleter GoToImplementationElseDeclaration<cr>
-nnoremap <leader>fd :YcmCompleter GoTo<cr>
-nnoremap <leader>fi :YcmCompleter GoToInclude<cr>
-nnoremap <leader>fr :YcmCompleter GoToReferences<cr>
+nnoremap <leader>gd :YcmCompleter GoTo<cr>
+nnoremap <leader>gi :YcmCompleter GoToInclude<cr>
+nnoremap <leader>gr :YcmCompleter GoToReferences<cr>
+nnoremap <leader>rf :YcmCompleter FixIt<cr>
+" nnoremap <leader>rr :YcmCompleter RefactorRename-new-name<cr>
 
 " let g:lt_location_list_toggle_map = '<leader>l'
 " let g:lt_quickfix_list_toggle_map = '<leader>q'
